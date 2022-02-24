@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://offnaria.github.io/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://offnaria.github.io/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://offnaria.github.io/css/github.min.css' />
+    <link rel="stylesheet" href='https://offnaria.github.io/css/github-style.css' />
+    <link rel="stylesheet" href='https://offnaria.github.io/css/light.css' />
+    <link rel="stylesheet" href='https://offnaria.github.io/css/dark.css' />
+    <link rel="stylesheet" href='https://offnaria.github.io/css/syntax.css' />
+    <title>【FPGA】CFU-Playgroundを使ってみる2（セットアップ） - YMDの物置</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/github.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="前回の続き。
+今回から、CFU-Playgroundのセットアップに取り組もうと思う。
+" />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://offnaria.github.io/post/220222-cfu-playground02/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="【FPGA】CFU-Playgroundを使ってみる2（セットアップ） - YMDの物置" />
+<meta name="twitter:description"
+  content="前回の続き。
+今回から、CFU-Playgroundのセットアップに取り組もうと思う。
+" />
+<meta name="twitter:site" content="https://offnaria.github.io/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://offnaria.github.io/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="【FPGA】CFU-Playgroundを使ってみる2（セットアップ） - YMDの物置">
+<meta property="og:description"
+  content="前回の続き。
+今回から、CFU-Playgroundのセットアップに取り組もうと思う。
+" />
+<meta property="og:url" content="https://offnaria.github.io/post/220222-cfu-playground02/" />
+<meta property="og:site_name" content="【FPGA】CFU-Playgroundを使ってみる2（セットアップ）" />
+<meta property="og:image"
+  content="https://offnaria.github.io/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2022-02-22 15:36:49 &#43;0900 JST" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://offnaria.github.io/">
+        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd"
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:https://offnaria.github.io/">
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://offnaria.github.io/">
+        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
+          width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+  
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://offnaria.github.io/">
+                  <img class=" avatar-user"
+                    src="https://offnaria.github.io/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://offnaria.github.io/">offNaria</a></span><span
+                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
+                      href="https://offnaria.github.io/post/220222-cfu-playground02/">【FPGA】CFU-Playgroundを使ってみる2（セットアップ）</a></strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Tue, 22 Feb 2022 15:36:49 &#43;0900"
+                    class="no-wrap">
+                    Tue, 22 Feb 2022 15:36:49 &#43;0900</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Thu, 24 Feb 2022 15:06:54 &#43;0900"
+                    class="no-wrap">
+                    Thu, 24 Feb 2022 15:06:54 &#43;0900</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      3492 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><p><a href="https://offnaria.github.io/post/220215-cfu-playground01/">前回</a>の続き。</p>
+<p>今回から、<a href="https://github.com/google/CFU-Playground">CFU-Playground</a>のセットアップに取り組もうと思う。</p>
+<p>CFU-Playgroundについて改めてまとめると，「VexRiscVプロセッサのパイプラインに，機械学習系の計算で使いがちな処理を高速に実行する回路を拡張し，拡張命令とその対応付け，さらに各種FPGA向けビットストリーム生成まで自動で行うアプリケーション」といったところである．</p>
+<h2 id="環境">環境</h2>
+<p>CFU-Playgroundのように、日本語のドキュメントが少ないアプリケーションのセットアップには失敗がつきものだと思う。
+したがって、環境破壊を繰り返しても許されるように<a href="https://www.docker.com/">Docker</a>を用いて準備を行いたい。</p>
+<p>また、Xilinx FPGA向けの環境として、CondaのパッケージであるSymbiFlowを用いることが提案されている(<a href="https://cfu-playground.readthedocs.io/en/latest/setup-guide.html#option-4a-install-conda-package-for-symbiflow-for-xilinx">Option 4a</a>)。
+今回はSymbiFlowを使ってみようと思うので、Vivado環境がすでに存在している場合は参考にならない可能性があることを断っておく。</p>
+<h3 id="コピペ用">コピペ用</h3>
+<p>以下のコマンドたちを入力すれば，とりあえず動くようになると思われる．</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt update
+apt install -y sudo patch g++ zlib1g-dev
+<span class="nb">cd</span> ~
+git clone https://github.com/google/CFU-Playground.git
+<span class="nb">cd</span> CFU-Playground
+scripts/setup -ci
+make install-sf
+<span class="nb">cd</span> ~
+wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.08/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
+tar xvfz riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
+<span class="nb">echo</span> <span class="s2">&#34;export PATH=</span><span class="nv">$PATH</span><span class="s2">:</span><span class="nv">$HOME</span><span class="s2">/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14/bin&#34;</span> &gt;&gt; ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
+</code></pre></div><p>以下は，これに至るまでの道のりである．不要な場合は，<strong>テスト実行</strong>まで読み飛ばしても問題ないと思われる．</p>
+<h2 id="セットアップ">セットアップ</h2>
+<p>基本的に、セットアップは<a href="https://cfu-playground.readthedocs.io/en/latest/setup-guide.html">Setup Guide</a>の通りに行うが、引っかかった個所がいくつかあったため、それと対策を共有したい。</p>
+<h3 id="anaconda環境の構築">Anaconda環境の構築</h3>
+<p><a href="https://hub.docker.com/r/continuumio/anaconda3">Docker Hubのページ</a>にある通り、pullしてrunするだけ。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker pull continuumio/anaconda3
+docker run -i -t continuumio/anaconda3 /bin/bash
+</code></pre></div><h3 id="cfu-playgroundリポジトリのclone">CFU-Playgroundリポジトリのclone</h3>
+<p>cloneするだけ。一応ホームディレクトリに移動していることに注意されたい。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~
+git clone https://github.com/google/CFU-Playground.git
+</code></pre></div><p>本当はroot以外のユーザを作っておくべきなのだろうけれど、面倒なのでそのままやる。</p>
+<h3 id="セットアップスクリプトの実行">セットアップスクリプトの実行</h3>
+<p>ここで結構ハマった。まずは普通にスクリプトを実行してみる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> CFU-Playground
+./scripts/setup
+</code></pre></div><p>すると、<code>sudo</code>がないと怒られるので、インストールする。このとき、リポジトリ情報を更新しておかないと、インストールが上手くいかない可能性がある。そのため、あらかじめ更新も行う。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt update
+apt install sudo
+</code></pre></div><p>再度スクリプトを実行すると、インストールされていないパッケージたちが表示されるので、yを2回入力してインストールする。
+なお、インストールされていないパッケージたちは次のようになった。</p>
+<pre><code>Missing:
+gcc
+Missing packages: gcc make cmake openocd expect ccache verilator libevent-dev libjson-c-dev ninja-build libusb-1.0-0-dev libftdi1-dev
+</code></pre><p>今度は<code>patch</code>がないと怒られるので、やはりこれもインストールする。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install patch
+</code></pre></div><p>三度目の正直に懸けて、再びスクリプトを実行する。ここで、<strong>スクリプトの第一引数として<code>-ci</code>を渡しておくと、パッケージのインストール時にyの入力を求められない</strong>。詳しくは、この記事の最後に書く。</p>
+<p>RISC-VツールチェーンとVivadoが見つからないという警告の後，セットアップが完了する．</p>
+<pre><code>Getting Yosys.
+Warning: RISCV GCC toolchain not found. Please install one, following the instructions at
+https://cfu-playground.readthedocs.io/en/latest/setup-guide.html#step-3-install-riscv-toolchain
+WARNING: vivado not in path.
+Setup complete
+</code></pre><h3 id="symbiflow関連のインストール">SymbiFlow関連のインストール</h3>
+<p>CFU-PlaygroundのルートにMakefileが用意されているので，それをそのまま利用する．</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make install-sf
+</code></pre></div><p>インストールが完了したら，SymbiFlowの環境に入れるかどうか確認する．<code>make enter-sf</code>でサブシェルが起動し，<code>exit</code>で抜けられる．</p>
+<h3 id="risc-vツールチェーンのインストール">RISC-Vツールチェーンのインストール</h3>
+<p>上でCondaを用いるセットアップを行ったので，<strong>既にRISC-Vツールチェーンはインストールされている</strong>らしい（<a href="https://cfu-playground.readthedocs.io/en/latest/setup-guide.html#step-5-install-risc-v-toolchain">Step 5のNote</a>）．</p>
+<p>ところが，ツールチェーンが存在する前提でこの先の操作を行おうとすると，クロスコンパイラのツールチェーンが見つからないと怒られてしまう．</p>
+<pre><code>OSError: Unable to find any of the cross compilation toolchains:
+- riscv64-unknown-elf
+- riscv64-unknown-linux-gnu
+- riscv64-elf
+- riscv64-linux
+- riscv64-linux-gnu
+- riscv-sifive-elf
+- riscv64-none-elf
+- riscv32-unknown-elf
+- riscv32-unknown-linux-gnu
+- riscv32-elf
+- riscv-none-embed
+- riscv-none-elf
+</code></pre><p>結局，ツールチェーンをインストールすることになった．</p>
+<p>ホームディレクトリに戻り，<a href="https://github.com/sifive/freedom-tools/releases/tag/v2020.08.0">August 2020 Tools Release</a>をダウンロードして，展開する．
+x86-64のUbuntu版をインストールしていることに注意されたい．</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~
+wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.08/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
+tar xvfz riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
+rm riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz <span class="c1"># 圧縮ファイルを削除</span>
+</code></pre></div><p>展開が完了したら，ツールチェーンにPATHを通す．</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;export PATH=</span><span class="nv">$PATH</span><span class="s2">:</span><span class="nv">$HOME</span><span class="s2">/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14/bin&#34;</span> &gt;&gt; ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
+</code></pre></div><h3 id="テスト実行">テスト実行</h3>
+<p>テンプレートプロジェクトをビルドすることにより，インストールした者たちが正常に動作しているかどうかを検証する．<a href="https://cfu-playground.readthedocs.io/en/latest/setup-guide.html#step-6-test-run">Step 6</a>ではArty A7-35T向けにビットリーム生成・書き込みするところまで行っているようだが，手元にボードがあるわけではないため，Verilatorを使ったシミュレーションを行う．</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> CFU-Playground/proj/proj_template
+make clean
+make <span class="nv">PLATFORM</span><span class="o">=</span>sim load <span class="c1"># Verilatorを用いたシミュレーションを行うためのパラメータ</span>
+</code></pre></div><p>これを実行したところ，g++が見当たらないとのこと．先ほどPATHを通した<code>~/riscv64-（略）/bin</code>の中に<code>riscv64-unknown-elf-g++</code>が存在してはいるのだが，なぜこのエラーが出てしまうのかはよく理解できていない．</p>
+<p>おそらく，ここで要求されているg++はRISC-VのクロスコンパイラではなくVerilatorで使用するコンパイラなのではないかと考えられる．
+おとなしくインストールしよう．</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install g++
+</code></pre></div><p>もう一度<code>make PLATFORM=sim load</code>を行うと，今度は<code>zlib.h</code>が見つからないというエラーによってコンパイルが停止してしまう．</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">/usr/share/verilator/include/gtkwave/fstapi.h:36:10: fatal error: zlib.h: No such file or directory
+   <span class="m">36</span> <span class="p">|</span> <span class="c1">#include &lt;zlib.h&gt;</span>
+      <span class="p">|</span>          ^~~~~~~~
+compilation terminated.
+</code></pre></div><p>調べたところ，<code>zlib1g-dev</code>というパッケージをインストールすればよいらしい．</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install zlib1g-dev
+</code></pre></div><p><code>make clean</code>して，再度<code>make PLATFORM=sim load</code>してみる．</p>
+<pre><code>--=============== SoC ==================--
+CPU:            VexRiscv_FullCfuDebug @ 1MHz
+BUS:            WISHBONE 32-bit @ 4GiB
+CSR:            32-bit data
+ROM:            128KiB
+SRAM:           8KiB
+MAIN-RAM:       32768KiB
+
+
+--============== Boot ==================--
+Booting from serial...
+Press Q or ESC to abort boot completely.
+sL5DdSMmkekro
+Timeout
+Executing booted program at 0x40000000
+
+--============= Liftoff! ===============--
+Hello, World!
+
+CFU Playground
+==============
+ 1: TfLM Models menu
+ 2: Functional CFU Tests
+ 3: Project menu
+ 4: Performance Counter Tests
+ 5: TFLite Unit Tests
+ 6: Benchmarks
+ 7: Util Tests
+ t: trace (only works in simulation)
+ Q: Exit (only works in simulation)
+main&gt;
+</code></pre><p>ついに起動した．
+1MHzしか出してくれないのがちょっと残念であるが，そういうものなのだろうか．
+また，<code>Hello, world!</code>の直後に<code>initTfLite()</code>が実行されていないのが気がかりである．</p>
+<p>とりあえず，int8人物検出のGolden testを行ってみる．入力は<code>1</code>,<code>1</code>,<code>g</code>である．</p>
+<pre><code>main&gt; 1
+
+Running TfLM Models menu
+
+TfLM Models
+===========
+ 1: Person Detection int8 model
+ x: eXit to previous menu
+models&gt; 1
+
+Running Person Detection int8 model
+Error_reporter OK!
+Input: 9216 bytes, 4 dims: 1 96 96 1
+
+
+Tests for pdti8 model
+=====================
+ 1: Run with zeros input
+ 2: Run with no-person input
+ 3: Run with person input
+ g: Run golden tests (check for expected outputs)
+ x: eXit to previous menu
+pdti8&gt; g
+
+Running Run golden tests (check for expected outputs)
+Zeroed 9216 bytes at 0x400d1890
+Running pdti8
+...............................
+（省略）
+...............................
+&quot;Event&quot;,&quot;Tag&quot;,&quot;Ticks&quot;
+0,DEPTHWISE_CONV_2D,8658
+1,DEPTHWISE_CONV_2D,9090
+2,CONV_2D,12187
+3,DEPTHWISE_CONV_2D,6739
+4,CONV_2D,8587
+5,DEPTHWISE_CONV_2D,9247
+6,CONV_2D,14494
+7,DEPTHWISE_CONV_2D,2488
+8,CONV_2D,7386
+9,DEPTHWISE_CONV_2D,4724
+10,CONV_2D,12346
+11,DEPTHWISE_CONV_2D,1107
+12,CONV_2D,6436
+13,DEPTHWISE_CONV_2D,2215
+14,CONV_2D,11626
+15,DEPTHWISE_CONV_2D,2408
+16,CONV_2D,11876
+17,DEPTHWISE_CONV_2D,2301
+18,CONV_2D,11547
+19,DEPTHWISE_CONV_2D,2379
+20,CONV_2D,11534
+21,DEPTHWISE_CONV_2D,2221
+22,CONV_2D,11515
+23,DEPTHWISE_CONV_2D,612
+24,CONV_2D,5816
+25,DEPTHWISE_CONV_2D,994
+26,CONV_2D,11305
+27,AVERAGE_POOL_2D,46
+28,CONV_2D,12
+29,RESHAPE,1
+30,SOFTMAX,6
+Perf counters not enabled.
+   197M (   196544836) cycles total
+OK   Golden tests passed
+---
+</code></pre><p>無事にテストを通過したようだ．</p>
+<p>続いて，TFLiteのテストを行う．メインメニューに戻って<code>5</code>を入力する．</p>
+<pre><code>main&gt; 5
+
+Running TFLite Unit Tests
+
+CONV TEST:
+Testing SimpleTestFloat
+Testing InputAndFilterSameWidthHeight
+Testing InputOutputDifferentTypeIsError
+src/tensorflow/lite/micro/kernels/conv.cc:55 input-&gt;type != output-&gt;type (1 != 9)
+Testing HybridModeIsError
+src/tensorflow/lite/micro/kernels/conv.cc Hybrid models are not supported on TFLite Micro.
+Testing SimpleTestQuantizedPerChannel
+Testing SimpleTestQuantized16x8PerChannel
+Testing SimpleTestDilatedQuantizedPerChannel
+Testing SimpleTestQuantizedPerChannelRelu6
+Testing SimpleTestQuantized16x8PerChannelRelu6
+Testing Kernel1x1QuantizedPerChannel
+Testing Kernel1x1QuantizedPerChannelRelu6
+Testing Kernel1x1Quantized16x8PerChannelRelu6
+Testing BroadcastPerLayerQuantizationToPerChannelShouldMatchGolden
+Testing FilterDimsNotMatchingAffineQuantization
+src/tensorflow/lite/micro/kernels/conv_common.cc:181 affine_quantization-&gt;scale-&gt;size == 1 || affine_quantization-&gt;scale-&gt;size == filter-&gt;dims-&gt;data[kConv was not true.
+src/tensorflow/lite/micro/kernels/conv_common.cc:181 affine_quantization-&gt;scale-&gt;size == 1 || affine_quantization-&gt;scale-&gt;size == filter-&gt;dims-&gt;data[kConv was not true.
+Testing Int8Input32x1Filter32x32ShouldMatchGolden
+Testing Int8Filter8x3x3x3PerChannelScaleRelu6ShouldMatchGolden
+16/16 tests passed
+~~~ALL TESTS PASSED~~~
+
+DEPTHWISE_CONV TEST:
+Testing SimpleTest
+Testing SimpleTestRelu
+Testing SimpleTestQuantizedPerChannel
+Testing SimpleTestQuantizedPerChannelDepthMultiplier1
+Testing TestQuantizedPerChannelDepthMultiplier1Relu6
+Testing SimpleTestDilatedQuantizedPerChannel
+Testing TestQuantizedPerChannelCompareWithFloat
+Testing PerChannelBroadcastQuantizationParams
+Testing FilterDimsNotMatchingAffineQuantization
+src/tensorflow/lite/micro/kernels/depthwise_conv_common.cc:182 affine_quantization-&gt;scale-&gt;size == 1 || affine_quantization-&gt;scale-&gt;size == filter-&gt;dims-&gt;data[ was not true.
+src/tensorflow/lite/micro/kernels/depthwise_conv_common.cc:187 affine_quantization-&gt;scale-&gt;size != affine_quantization-&gt;zero_point-&gt;size (4 != 2)
+Testing Int8Input32x4Filter32x4ShouldMatchGolden
+Testing Int8Input32x1Filter32x1ShouldMatchGolden
+11/11 tests passed
+~~~ALL TESTS PASSED~~~
+
+---
+</code></pre><p>大丈夫そうなので，<code>Q</code>を入力して終了する．</p>
+<pre><code>main&gt; Q
+
+Running Exit (only works in simulation)
+Goodbye!
+</code></pre><p>かわいいね．</p>
+<p>今回はここまで．</p>
+<h2 id="セットアップスクリプトの-ciオプションについて">セットアップスクリプトの-ciオプションについて</h2>
+<p>シェルスクリプト初心者なので、スクリプトに書かれていることの意味を調べながら理解したことを書く。
+中・上級者は既に知っていることばかりであると思われる。</p>
+<p><a href="https://github.com/google/CFU-Playground/commit/b6c91519691e6138e3118babf6bc31ce20a2dcb1">セットアップスクリプト（commit b6c9151）</a>を眺めてみると、18～47行目ではインストールされていないパッケージたちを把握していき、49,50行目でそれらを出力していることが分かる。</p>
+<p>続いて、52～74行目では、<code>apt install</code>にyを付けるかどうかの処理を行っている。
+以下に、コメントの形で解説を行う。</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">in_ci</span><span class="o">=</span><span class="m">0</span>
+<span class="c1"># ifの条件式には略式testコマンドが使われている</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -gt <span class="m">0</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>      <span class="c1"># 引数の総数($#)は0より大きい(greater than)か？</span>
+  <span class="k">if</span> <span class="o">[</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&#34;-ci&#34;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span> <span class="c1"># 第一引数($1)は&#34;-ci&#34;か？</span>
+    <span class="nv">in_ci</span><span class="o">=</span><span class="m">1</span>
+  <span class="k">fi</span>
+<span class="k">fi</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="si">${#</span><span class="nv">missing</span><span class="p">[@]</span><span class="si">}</span> -gt <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>                <span class="c1"># missingの個数(${#missing[@]})は0より大きいか？</span>
+    <span class="nb">echo</span> <span class="s2">&#34;Missing packages: </span><span class="si">${</span><span class="nv">missing</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>   <span class="c1"># ${missing[@]}でmissingの中身を列挙できる</span>
+    <span class="k">if</span> which apt &gt;/dev/null<span class="p">;</span> <span class="k">then</span>                <span class="c1"># aptが/dev/nullの下にあるか（文字列比較？なんでtestじゃないんだろう？）</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$in_ci</span> -gt <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>                <span class="c1"># in_ci&gt;0 ⇐ 第一引数が&#34;-ci&#34;</span>
+            sudo apt install -y <span class="s2">&#34;</span><span class="si">${</span><span class="nv">missing</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span>  <span class="c1"># &#34;y&#34;付きでapt install</span>
+        <span class="k">else</span>
+            <span class="nb">echo</span> -n <span class="s2">&#34;Install [y]/n? &#34;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>        <span class="c1"># yの入力を要求</span>
+            <span class="nv">answer</span><span class="o">=</span><span class="k">$(</span><span class="nb">read</span><span class="k">)</span>
+            <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$answer</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;y&#34;</span> -o -z <span class="s2">&#34;</span><span class="nv">$answer</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+                sudo apt install <span class="s2">&#34;</span><span class="si">${</span><span class="nv">missing</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="c1"># apt installもyの入力を要求するので2回要求される羽目になる</span>
+            <span class="k">fi</span>
+        <span class="k">fi</span>
+    <span class="k">else</span>
+        <span class="nb">exit</span> <span class="m">1</span>
+    <span class="k">fi</span>
+<span class="k">fi</span>
+</code></pre></div><p>（参考：<a href="https://shellscript.sunone.me/if_and_test.html">if 文と test コマンド | UNIX &amp; Linux コマンド・シェルスクリプト リファレンス</a>）</p></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://offnaria.github.io/js/toc.js'></script>
+<link rel="stylesheet" href='https://offnaria.github.io/css/toc.css' />
+
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://offnaria.github.io/">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+</body>
+
+<script type="application/javascript" src="https://offnaria.github.io/js/github-style.js"></script>
+
+
+
+</html>

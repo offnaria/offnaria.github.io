@@ -6,7 +6,17 @@
     <description>Recent content in Posts on YMDの物置</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 15 Feb 2022 20:13:02 +0900</lastBuildDate><atom:link href="https://offnaria.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Feb 2022 15:36:49 +0900</lastBuildDate><atom:link href="https://offnaria.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【FPGA】CFU-Playgroundを使ってみる2（セットアップ）</title>
+      <link>https://offnaria.github.io/post/220222-cfu-playground02/</link>
+      <pubDate>Tue, 22 Feb 2022 15:36:49 +0900</pubDate>
+      
+      <guid>https://offnaria.github.io/post/220222-cfu-playground02/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://offnaria.github.io/post/220215-cfu-playground01/&#34;&gt;前回&lt;/a&gt;の続き。&lt;/p&gt;
+&lt;p&gt;今回から、&lt;a href=&#34;https://github.com/google/CFU-Playground&#34;&gt;CFU-Playground&lt;/a&gt;のセットアップに取り組もうと思う。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>【FPGA】CFU-Playgroundを使ってみる1（導入）</title>
       <link>https://offnaria.github.io/post/220215-cfu-playground01/</link>
