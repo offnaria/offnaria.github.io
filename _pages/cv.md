@@ -11,8 +11,8 @@ redirect_from:
 
 Education
 ======
-* Bachelor of Engineering, Tokyo Institute of Technology, 2023
-* Master of Engineering, Tokyo Institute of Technology, 2025 (expected)
+* B. Eng., [Kise Lab.](https://www.arch.cs.titech.ac.jp/), [Tokyo Institute of Technology](https://www.titech.ac.jp/), 2023
+* M. Eng., Kise Lab., Tokyo Institute of Technology, 2025 (expected)
 
 <!--
 Work experience
