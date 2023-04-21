@@ -6,8 +6,8 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-locale                   : "en-US"
-title                    : "Yuji Yamada"
+locale                   : "ja-JP"
+title                    : "Yuji YAMADA Homepage"
 title_separator          : "-"
 name                     : &name "Yuji Yamada"
 description              : &description "personal description"
@@ -80,11 +80,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Yuji Yamada"
+  name             : "山田 悠嗣"
   avatar           : "profile.jpg"
-  bio              : "Tokyo Institute of Technology"
-  location         : "Tokyo, Japan"
-  employer         :
+  bio              : "東京工業大学 情報理工学院"
+  location         : "東京都 / 北海道"
+  employer         : "吉瀬 謙二"
   pubmed           :
   googlescholar    :
   email            :
