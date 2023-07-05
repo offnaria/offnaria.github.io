@@ -23,6 +23,3 @@ redirect_from:
   * Standard motor vehicle license (glasses needed) licensed, February 2021
 * **2023年 6月** [ネットワークスペシャリスト試験](https://www.ipa.go.jp/shiken/kubun/nw.html) (2023年4月実施) 合格
   * Network Specialist Examination (April, 2023) qualified, June 2023
-
-
-<a class="twitter-timeline" href="https://twitter.com/YMD_Glasses?ref_src=twsrc%5Etfw">Tweets by YMD_Glasses</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
