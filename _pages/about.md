@@ -26,4 +26,4 @@ redirect_from:
 
 研究業績等 (Publications)
 ======
-* Yuji Yamada, Nesrine Berjab, Tomohiro Yoneda, Kenji Kise, "A remote partial-reconfigurable SoC with a RISC-V soft processor targeting low-end FPGAs," IEEE 16th International Symposium on Embedded Multicore/Many-core Systems-on-Chip (MCSoC 2023), December 2023, pp.31-37.
+* **Yuji Yamada**, Nesrine Berjab, Tomohiro Yoneda, Kenji Kise, "A remote partial-reconfigurable SoC with a RISC-V soft processor targeting low-end FPGAs," IEEE 16th International Symposium on Embedded Multicore/Many-core Systems-on-Chip (MCSoC 2023), December 2023, pp.31-37.
