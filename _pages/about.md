@@ -27,3 +27,6 @@ redirect_from:
 研究業績等 (Publications)
 ======
 * **Yuji Yamada**, Nesrine Berjab, Tomohiro Yoneda, Kenji Kise, "A remote partial-reconfigurable SoC with a RISC-V soft processor targeting low-end FPGAs," IEEE 16th International Symposium on Embedded Multicore/Many-core Systems-on-Chip (MCSoC 2023), December 2023, pp.31-37. ([IEEE Xplore](https://ieeexplore.ieee.org/abstract/document/10387925))
+* **Yuji Yamada**, Kenji Kise, "Towards a Resource-efficient Network Offload Engine for FPGAs using eBPF/XDP," 2nd Workshop on FPGA Technologies for Adaptive Computing (FTAC 2024), June 2024. ([FTAC 2024](https://aitech.ac.jp/~dslab/ftac2024/))
+*  Yuta Takayasu, **Yuji Yamada**, Noriaki Shimooka, Nesrine Berjab, and Kenji Kise, "Showing the Advantage of C2RTL by Comparing the Simulation Time with Verilog HDL in a RISC-V Processor Model," 2nd Workshop on FPGA Technologies for Adaptive Computing (FTAC 2024), June 2024. ([FTAC 2024](https://aitech.ac.jp/~dslab/ftac2024/))
+
