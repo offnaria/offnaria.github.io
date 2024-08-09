@@ -30,3 +30,7 @@ redirect_from:
 * **Yuji Yamada**, Kenji Kise, "Towards a Resource-efficient Network Offload Engine for FPGAs using eBPF/XDP," 2nd Workshop on FPGA Technologies for Adaptive Computing (FTAC 2024), June 2024. ([FTAC 2024](https://aitech.ac.jp/~dslab/ftac2024/))
 *  Yuta Takayasu, **Yuji Yamada**, Noriaki Shimooka, Nesrine Berjab, and Kenji Kise, "Showing the Advantage of C2RTL by Comparing the Simulation Time with Verilog HDL in a RISC-V Processor Model," 2nd Workshop on FPGA Technologies for Adaptive Computing (FTAC 2024), June 2024. ([FTAC 2024](https://aitech.ac.jp/~dslab/ftac2024/))
 
+講演等 (Talks)
+======
+* 山田悠嗣「Python (LiteX/MigenDSL) によるシステム設計の一例 (Litex) (仮)」, HotSPA2024 RECONF企画パネル, 2024年6月. ([HotSPA2024](https://ken.ieice.org/ken/paper/20240611Vcdg/))
+
