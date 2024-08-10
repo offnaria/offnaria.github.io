@@ -10,6 +10,8 @@ redirect_from:
 
 学歴 (Education)
 ======
+* **2018年 3月** 北海道旭川東高等学校 全日制 卒業
+  * Graduated from Hokkaido Asahikawa Higashi Hgih Scool, March 2018
 * **2023年 3月** 東京工業大学 情報工学系 [吉瀬研究室](https://www.arch.cs.titech.ac.jp/)で学士号 (工学) 取得
   * B. Eng., Kise Lab., Department of Computer Science, Tokyo Institute of Technology, March 2023
 * **2023年 4月** から 東京工業大学 情報工学系 吉瀬研究室で修士課程に在籍中
