@@ -10,9 +10,9 @@ redirect_from:
 
 学歴 (Education)
 ======
-* **2023年 4月** から 東京工業大学 情報工学系 吉瀬研究室で修士課程に在籍中
-  * I am studying for my master's degree at Kise Lab., Tokyo Institute of Technology from April 2023
-* **2023年 3月** 東京工業大学 情報工学系 [吉瀬研究室](https://www.arch.cs.titech.ac.jp/)で学士号 (工学) 取得
+* **2025年 3月** 東京科学大学 情報工学系 [吉瀬研究室](https://www.arch.cs.titech.ac.jp/)で修士号 (工学) 取得
+  * Received M. Eng., Kise Lab., Department of Computer Science, Institute of Science Tokyo, March 2025
+* **2023年 3月** 東京工業大学 情報工学系 吉瀬研究室で学士号 (工学) 取得
   * Received B. Eng., Kise Lab., Department of Computer Science, Tokyo Institute of Technology, March 2023
 * **2018年 3月** 北海道旭川東高等学校 全日制 卒業
   * Graduated from Hokkaido Asahikawa Higashi Hgih Scool, March 2018
